@@ -19,20 +19,22 @@ function reloadSize(win, w, h = screenSize.height) {
  * @param {*} h 
  */
 function reloadSizeWithAnimation(win, w, h = screenSize.height, s = 0.1) {
-    clearTimeout(currentAnimation);
-    let currentSize = win.getSize();
-    if (Math.abs(w - currentSize[0]) > 10 || Math.abs(h - currentSize[1] > 10)) {
-        let args = [
-            Math.round(currentSize[0] + (w - currentSize[0]) * s),
-            Math.round(currentSize[1] + (h - currentSize[1]) * s)
-        ];
-        reloadSize(win, ...args);
-        currentAnimation = setTimeout(() => {
-            reloadSizeWithAnimation(win, w, h, s);
-        }, 10);
-    } else {
-        reloadSize(win, w, h);
-    };
+    try {
+        clearTimeout(currentAnimation);
+        let currentSize = win.getSize();
+        if (Math.abs(w - currentSize[0]) > 10 || Math.abs(h - currentSize[1] > 10)) {
+            let args = [
+                Math.round(currentSize[0] + (w - currentSize[0]) * s),
+                Math.round(currentSize[1] + (h - currentSize[1]) * s)
+            ];
+            reloadSize(win, ...args);
+            currentAnimation = setTimeout(() => {
+                reloadSizeWithAnimation(win, w, h, s);
+            }, 10);
+        } else {
+            reloadSize(win, w, h);
+        };
+    } catch { };
 };
 app.addListener("ready", () => {
     let dataPath = path.join(os.homedir(), ".codriver");
@@ -45,7 +47,8 @@ app.addListener("ready", () => {
             preload: path.join(__dirname, "preload.js"),
             nodeIntegration: true
         },
-        alwaysOnTop: true
+        alwaysOnTop: true,
+        skipTaskbar: true
     });
     if (!fs.existsSync(dataPath)) {
         fs.mkdirSync(dataPath);
