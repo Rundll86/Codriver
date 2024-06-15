@@ -1,6 +1,6 @@
 # It s just a joke!!!
-EXPLAIN: Ban the Microsoft Copilot in Chinese Mainland.
-Install!!!
+EXPLAIN: Ban the Microsoft Copilot in Chinese Mainland.  
+**Install!!!**
 ```batch
 npm i
 npm i electron-ofp -g
