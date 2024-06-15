@@ -9,3 +9,10 @@ eop init --skip profile
 eop build
 ```
 Output in dist/codriver.exe
+**Run & Test**
+```batch
+npm run build
+eop start
+```
+The window is using no-linear animation.  
+It will cause some bug(?)
