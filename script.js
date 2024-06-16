@@ -3,12 +3,6 @@ import * as marked from "marked";
 import hljs from "highlight.js";
 import "highlight.js/styles/vs2015.css";
 chatnio.setKey(apikey);
-marked.marked.setOptions({
-    highlight: function (code, language) {
-        const validLanguage = hljs.getLanguage(language) ? language : 'javascript';
-        return hljs.highlight(code, { language: validLanguage }).value;
-    }
-});
 const ai = new chatnio.Chat(-1);
 const show = document.getElementById("show");
 const inputer = document.getElementById("inputer");
@@ -57,6 +51,7 @@ function askAI(message) {
         ai.askStream({ message, model: "gpt-4o", web: true }, e => {
             lastsaying += e.message;
             msgboxthis.result.innerHTML = marked.marked(lastsaying);
+            hljs.highlightAll();
             sayok = e.end;
             document.body.scrollTop = document.body.scrollHeight;
         });

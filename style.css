@@ -85,8 +85,6 @@ code::-webkit-scrollbar-thumb {
 }
 
 code {
-    overflow: scroll;
-    white-space: pre-line;
     text-wrap: nowrap;
     display: inline-block;
 }
