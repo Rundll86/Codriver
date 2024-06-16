@@ -2,6 +2,7 @@
     "project": {
         "name": "Codriver",
         "entry": "index.js",
+        "version": "1.0.2",
         "files": [
             "index.js",
             "index.html",
