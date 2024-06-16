@@ -1,6 +1,6 @@
 {
     "project": {
-        "name": "some-app",
+        "name": "Codriver",
         "entry": "index.js",
         "files": [
             "index.js",
