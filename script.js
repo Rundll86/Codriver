@@ -76,11 +76,9 @@ apikeyer.addEventListener("keydown", e => {
     };
 });
 document.addEventListener("mouseover", () => {
-    sendover();
     drop.style.display = "none";
 });
 document.addEventListener("mouseleave", () => {
-    sendout();
     drop.style.display = "flex";
 });
 /*

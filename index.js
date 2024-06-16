@@ -8,6 +8,8 @@ const windowW = 400;
  */
 var screenSize;
 var currentAnimation = 0;
+var explorInWeb = false;
+var dataPath = path.join(os.homedir(), ".codriver");
 function reloadSize(win, w, h = screenSize.height) {
     win.setSize(w, h);
     win.setPosition(screenSize.width - w, screenSize.height - h);
@@ -36,8 +38,22 @@ function reloadSizeWithAnimation(win, w, h = screenSize.height, s = 0.1) {
         };
     } catch { };
 };
+/**
+ * 
+ * @param {string} target 
+ * @param {string} substr 
+ */
+function replaceAll(target, substr, v) {
+    let result = target;
+    while (result.includes(substr)) {
+        result = result.replace(substr, v);
+    };
+    return result;
+};
+function sendApiKey(win) {
+    win.webContents.send("apikey", fs.readFileSync(path.join(dataPath, "apikey")).toString());
+};
 app.addListener("ready", () => {
-    let dataPath = path.join(os.homedir(), ".codriver");
     Menu.setApplicationMenu(null);
     screenSize = screen.getPrimaryDisplay().workAreaSize;
     const win = new BrowserWindow({
@@ -58,15 +74,22 @@ app.addListener("ready", () => {
     win.loadFile("index.html");
     ipcMain.on("toggle-devtool", () => win.webContents.toggleDevTools());
     ipcMain.on("close", () => app.quit());
+    //*
     ipcMain.on("mouseout", () => {
         reloadSizeWithAnimation(win, 20, screenSize.height / 2);
     });
     ipcMain.on("mouseover", () => {
-        reloadSizeWithAnimation(win, windowW);
+        reloadSizeWithAnimation(win, explorInWeb ? screenSize.width * 0.75 : windowW, explorInWeb ? screenSize.height * 0.75 : screenSize.height);
     });
+    //*/
     ipcMain.on("updateapikey", (_, e) => {
         fs.writeFileSync(path.join(dataPath, "apikey"), e);
     });
-    win.webContents.send("apikey", fs.readFileSync(path.join(dataPath, "apikey")).toString());
+    sendApiKey(win);
+    win.webContents.addListener("did-navigate", (_, url) => {
+        let urlnew = replaceAll(url, "\\", "/");
+        let target = replaceAll("file:///" + path.join(__dirname, "index.html"), "\\", "/");
+        explorInWeb = urlnew !== target;
+    });
 });
 app.addListener("window-all-closed", () => app.quit());

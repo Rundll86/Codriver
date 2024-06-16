@@ -6,6 +6,9 @@ window.addEventListener("keydown", e => {
     if (e.key === "F11") {
         ipcRenderer.send("close");
     };
+    if (e.key === "F10") {
+        ipcRenderer.send("backai");
+    };
     if (e.key === "F5") {
         window.location.reload();
     };
@@ -22,4 +25,10 @@ ipcRenderer.on("apikey", (_, e) => {
 });
 contextBridge.exposeInMainWorld("updateapikey", e => {
     ipcRenderer.send("updateapikey", e);
+});
+document.addEventListener("mouseover", () => {
+    ipcRenderer.send("mouseover");
+});
+document.addEventListener("mouseleave", () => {
+    ipcRenderer.send("mouseout");
 });
