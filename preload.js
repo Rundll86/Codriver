@@ -13,6 +13,7 @@ window.addEventListener("keydown", e => {
         window.location.reload();
     };
 });
+var mousecontroller = 0;
 contextBridge.exposeInMainWorld("sendout", () => {
     ipcRenderer.send("mouseout");
 });
@@ -26,9 +27,15 @@ ipcRenderer.on("apikey", (_, e) => {
 contextBridge.exposeInMainWorld("updateapikey", e => {
     ipcRenderer.send("updateapikey", e);
 });
-document.addEventListener("mouseover", () => {
-    ipcRenderer.send("mouseover");
-});
-document.addEventListener("mouseleave", () => {
-    ipcRenderer.send("mouseout");
-});
+if (mousecontroller == 0)
+{
+    document.addEventListener("mouseover", () => {
+        mousecontroller = 1;
+        ipcRenderer.send("mouseover");
+    });
+    document.addEventListener("mouseleave", () => {
+        mousecontroller = 1;
+        ipcRenderer.send("mouseout");
+    });
+}
+ipcMain.on("mouserecall", () => { mousecontroller = 0});
