@@ -77,11 +77,11 @@ app.addListener("ready", () => {
     //*
     ipcMain.on("mouseout", () => {
         reloadSizeWithAnimation(win, 20, screenSize.height / 2);
-        ipcRenderer.send("mouserecall");
+        win.webContents.send("mouserecall");
     });
     ipcMain.on("mouseover", () => {
         reloadSizeWithAnimation(win, explorInWeb ? screenSize.width * 0.75 : windowW, explorInWeb ? screenSize.height * 0.75 : screenSize.height);
-        ipcRenderer.send("mouserecall");
+        win.webContents.send("mouserecall");
     });
     //*/
     ipcMain.on("updateapikey", (_, e) => {
