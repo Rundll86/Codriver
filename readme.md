@@ -20,7 +20,7 @@ evm install 30.0.6
 evm use 30.0.6
 npm run build
 ```
-But you *can't* build it into executable file **in this method**.
+But you *can't* build it into executable file **in this method**.  
 **Run & Test(BEFORE BUILD)**
 ```batch
 npm run build
