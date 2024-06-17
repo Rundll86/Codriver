@@ -26,8 +26,8 @@ But you can't build it into executable file in this method.
 npm run build
 eop start #Or evm start
 ```
-**Changelog**
-v1.0 the first version
-v1.0.1 small changes to elctron-ofp for py & python3-cmd users
-v1.0.2 fix window-shaking while change the size
+**Changelog**  
+v1.0 the first version  
+v1.0.1 small changes to elctron-ofp for py & python3-cmd users  
+v1.0.2 fix window-shaking while change the size  
 v1.0.3 small changes for the users who have problems installing electron-ofp
