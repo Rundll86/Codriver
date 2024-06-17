@@ -17,3 +17,7 @@ eop start
 ```
 The window is using no-linear animation.  
 It will cause some bug(?)
+**Changelog**
+v1.0 the first version
+v1.0.1 small changes to elctron-ofp for py & python3-cmd users
+v1.0.2 fix window-shaking while change the size
