@@ -22,8 +22,10 @@ contextBridge.exposeInMainWorld("sendover", () => {
 });
 contextBridge.exposeInMainWorld("sendclose", () => ipcRenderer.send("close"));
 ipcRenderer.on("apikey", (_, e) => {
-    console.log("apikey", e);
     contextBridge.exposeInMainWorld("apikey", e);
+    let script = document.createElement("script");
+    script.src = "./script/script.js";
+    document.head.appendChild(script);
 });
 contextBridge.exposeInMainWorld("updateapikey", e => {
     ipcRenderer.send("updateapikey", e);
