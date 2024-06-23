@@ -87,6 +87,7 @@ app.addListener("ready", () => {
     ipcMain.on("updateapikey", (_, e) => {
         fs.writeFileSync(path.join(dataPath, "apikey"), e);
     });
+    ipcMain.on("mouserecall", () => { mousecontroller = 0 });
     sendApiKey(win);
     win.webContents.addListener("did-navigate", (_, url) => {
         let urlnew = replaceAll(url, "\\", "/");

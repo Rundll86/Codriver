@@ -22,13 +22,13 @@ contextBridge.exposeInMainWorld("sendover", () => {
 });
 contextBridge.exposeInMainWorld("sendclose", () => ipcRenderer.send("close"));
 ipcRenderer.on("apikey", (_, e) => {
+    console.log("apikey", e);
     contextBridge.exposeInMainWorld("apikey", e);
 });
 contextBridge.exposeInMainWorld("updateapikey", e => {
     ipcRenderer.send("updateapikey", e);
 });
-if (mousecontroller == 0)
-{
+if (mousecontroller == 0) {
     document.addEventListener("mouseover", () => {
         mousecontroller = 1;
         ipcRenderer.send("mouseover");
@@ -37,5 +37,4 @@ if (mousecontroller == 0)
         mousecontroller = 1;
         ipcRenderer.send("mouseout");
     });
-}
-ipcMain.on("mouserecall", () => { mousecontroller = 0});
+};
