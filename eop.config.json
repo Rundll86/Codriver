@@ -26,7 +26,7 @@
         "icon": "favicon.ico"
     },
     "electron": {
-        "home": "D:/Program Files/electron",
+        "home": "./electron",
         "bin": "electron.exe"
     }
 }
