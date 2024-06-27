@@ -28,11 +28,15 @@ But you *can't* build it into executable file **in this method**.
 npm run build
 eop start #Or evm start
 ```
-**Help**  
-Esc or F11 ----- QUIT  
-Shift_l or F12 ----devtool  
-F10 ---- backai
-Control_L or F5 ---- reload  
+**KeyMap**
+
+|Key|Function|
+|-|-|
+|Esc or F11|Quit|
+|LeftShift or F12|Open electron-dev-tools|
+|F10|Back to AI message (If you are explor in Website)|
+|LeftCtrl or F5|Reload window|
+
 **Changelog**  
 v1.0 the first version  
 v1.0.1 small changes to elctron-ofp for py & python3-cmd users  
