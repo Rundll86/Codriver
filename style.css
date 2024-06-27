@@ -1,8 +1,14 @@
+@font-face {
+    font-family: "nori";
+    src: url(./path/to/nori.ttf);
+}
+
 * {
     margin: 0;
     padding: 0;
     border: none;
     outline: none;
+    font-family: "nori";
 }
 
 body {
