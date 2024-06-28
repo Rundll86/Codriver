@@ -46,3 +46,4 @@ v1.0.1 small changes to elctron-ofp for py & python3-cmd users
 v1.0.2 fix window-shaking while change the size  
 v1.0.3 small changes for the users who have problems installing electron-ofp  
 v1.0.4 changes for some bugs 
+v1.0.5 changes for some bugs & font changed
